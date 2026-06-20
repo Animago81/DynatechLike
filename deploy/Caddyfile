@@ -1,0 +1,38 @@
+# ── DynaTech · Caddy-Konfiguration ────────────────────────────────────────────
+#
+# WÄHLE EINEN DER BEIDEN BLÖCKE (den anderen auskommentiert lassen).
+#
+# Variante A (EMPFOHLEN): echtes HTTPS über einen kostenlosen nip.io-Hostnamen.
+#   -> volle PWA (Installieren + Offline). Ersetze die IP mit Bindestrichen
+#      durch DEINE Server-IP, z. B. 203.0.113.5  ->  203-0-113-5.nip.io
+#
+# Variante B: nur über die nackte IP per HTTP (kein Installieren/Offline).
+#
+# Datei nach /etc/caddy/Caddyfile kopieren und `sudo systemctl reload caddy`.
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ===== Variante A: HTTPS via nip.io (empfohlen) =====
+# (bereits auf die Server-IP 162.55.218.101 eingetragen)
+162-55-218-101.nip.io {
+	root * /var/www/dynatech
+	file_server
+	encode gzip zstd
+
+	# Korrekter MIME-Typ fürs PWA-Manifest.
+	@manifest path *.webmanifest
+	header @manifest Content-Type application/manifest+json
+
+	# Service Worker & HTML nie hart cachen, damit Updates sofort ankommen.
+	@nocache path /sw.js /index.html /
+	header @nocache Cache-Control "no-cache"
+}
+
+# ===== Variante B: nur HTTP über die IP (PWA-Features deaktiviert) =====
+# :80 {
+# 	root * /var/www/dynatech
+# 	file_server
+# 	encode gzip zstd
+#
+# 	@manifest path *.webmanifest
+# 	header @manifest Content-Type application/manifest+json
+# }
