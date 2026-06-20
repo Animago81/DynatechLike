@@ -34,16 +34,14 @@ function makePlanetState(planetDef) {
 export function defaultState() {
   const planets = {};
   for (const p of PLANETS) planets[p.id] = makePlanetState(p);
-  // Starter buildings so the loop runs immediately.
-  const start = planets.terranova;
-  start.buildings.oilRig = 1;
-  start.buildings.oreMine = 1;
-  start.buildings.waterPump = 1;
+  // Cold start: no buildings yet. Starting credits are just enough to afford
+  // the first extractor (cheapest mine costs 60), so the player's very first
+  // action is to build a mine and bootstrap the economy from there.
 
   return {
     version: SCHEMA_VERSION,
     lang: navigator.language && navigator.language.startsWith("en") ? "en" : "de",
-    credits: 250,
+    credits: 60,
     planets,
     ships: [],
     currentPlanet: "terranova",
