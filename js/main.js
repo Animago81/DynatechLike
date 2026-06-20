@@ -51,10 +51,29 @@ function boot() {
   window.addEventListener("pagehide", saveGame);
 }
 
-// PWA service worker.
+// PWA service worker with automatic update + reload, so new versions are
+// picked up without the player having to clear caches manually.
 if ("serviceWorker" in navigator) {
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
+    navigator.serviceWorker.register("./sw.js").then((reg) => {
+      reg.update();
+      reg.addEventListener("updatefound", () => {
+        const nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener("statechange", () => {
+          // A new worker took over an already-controlled page: reload to apply.
+          if (nw.state === "installed" && navigator.serviceWorker.controller) {
+            window.location.reload();
+          }
+        });
+      });
+    }).catch(() => {});
   });
 }
 
