@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="description" content="DynaTech – Weltraum-Wirtschaftssimulation. Baue Minen, produziere Waren und handle zwischen den Planeten." />
+  <title>DynaTech</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top status bar -->
+    <header id="topbar">
+      <div class="brand">
+        <span class="logo">◆</span>
+        <span class="title">DYNA<span class="accent">TECH</span></span>
+      </div>
+      <div class="resources">
+        <div class="credits" id="creditsBox" title="Credits">
+          <span class="cr-icon">¢</span>
+          <span id="creditsValue">0</span>
+          <span class="cr-rate" id="creditsRate"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Planet selector -->
+    <div id="planetStrip" class="planet-strip"></div>
+
+    <!-- Main view -->
+    <main id="view"></main>
+
+    <!-- Bottom navigation -->
+    <nav id="nav">
+      <button class="nav-btn active" data-tab="production"><span class="ico">🏭</span><span data-i18n="nav.production">Produktion</span></button>
+      <button class="nav-btn" data-tab="market"><span class="ico">📈</span><span data-i18n="nav.market">Markt</span></button>
+      <button class="nav-btn" data-tab="fleet"><span class="ico">🚀</span><span data-i18n="nav.fleet">Flotte</span></button>
+      <button class="nav-btn" data-tab="planets"><span class="ico">🪐</span><span data-i18n="nav.planets">Planeten</span></button>
+      <button class="nav-btn" data-tab="settings"><span class="ico">⚙️</span><span data-i18n="nav.settings">Mehr</span></button>
+    </nav>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toasts"></div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

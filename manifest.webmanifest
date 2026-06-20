@@ -1,0 +1,17 @@
+{
+  "name": "DynaTech",
+  "short_name": "DynaTech",
+  "description": "Weltraum-Wirtschaftssimulation: Minen, Produktion und interplanetarer Handel.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "lang": "de",
+  "categories": ["games", "strategy"],
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

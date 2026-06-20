@@ -1,0 +1,11 @@
+{
+  "name": "dynatech",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DynaTech – a mobile space economy idle/management game, homage to Dynatech (1992).",
+  "scripts": {
+    "start": "node serve.mjs",
+    "dev": "node serve.mjs"
+  }
+}
